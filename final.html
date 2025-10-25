@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2e7d32">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pollution & Math Impact</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom right, #c8e6c9, #e8f5e9);
+    color: #222;
+    text-align: center;
+    padding: 20px;
+  }
+
+  h1 {
+    color: #2e7d32;
+  }
+
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 20px;
+  }
+
+  .pollution-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 160px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .pollution-card:hover {
+    transform: scale(1.05);
+  }
+
+  .pollution-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .pollution-card p {
+    margin: 10px;
+    font-weight: bold;
+    color: #2e7d32;
+  }
+
+  .info-box {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    margin-top: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    text-align: left;
+  }
+
+  .info-box.active {
+    display: block;
+  }
+
+  .real-math {
+    margin-top: 15px;
+    background: #f1f8e9;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Pollution & Real-Life Math</h1>
+<p>Select a type of pollution to learn more.</p>
+
+<div class="button-container">
+  <div class="pollution-card" onclick="showInfo('air')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Air_pollution.jpg" alt="Air Pollution">
+    <p>Air Pollution</p>
+  </div>
+  <div class="pollution-card" onclick="showInfo('water')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Water_pollution_in_a_canal.jpg" alt="Water Pollution">
+    <p>Water Pollution</p>
+  </div>
+  <div class="pollution-card" onclick="showInfo('land')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Land_pollution.jpg" alt="Land Pollution">
+    <p>Land Pollution</p>
+  </div>
+  <div class="pollution-card" onclick="showInfo('plastic')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Plastic_waste.jpg" alt="Plastic Pollution">
+    <p>Plastic Pollution</p>
+  </div>
+  <div class="pollution-card" onclick="showInfo('climate')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Climate_change_graph.png" alt="Climate Change">
+    <p>Climate Change</p>
+  </div>
+</div>
+
+<div id="info" class="info-box"></div>
+
+<script>
+const infoData = {
+  air: {
+    title: "Air Pollution",
+    content: `
+      <b>What it is:</b> Harmful gases and particles released into the atmosphere from vehicles, factories, and burning fossil fuels.<br><br>
+      <b>Effects:</b> Respiratory problems, smog, acid rain, global warming.<br><br>
+      <b>Real-Life Math Applications:</b>
+      <div class="real-math">
+        <ul>
+          <li>Air quality forecasting: Cities like Beijing use statistical and machine learning models to predict smog levels and warn citizens.</li>
+          <li>Traffic optimization: Algorithms calculate the best traffic flow to reduce idle cars and CO₂ emissions.</li>
+          <li>Emission tracking: Satellites collect atmospheric data analyzed with linear algebra and calculus to locate pollution sources.</li>
+        </ul>
+      </div>
+    `
+  },
+  water: {
+    title: "Water Pollution",
+    content: `
+      <b>What it is:</b> Contamination of rivers, lakes, and oceans by chemicals, waste, and harmful substances.<br><br>
+      <b>Effects:</b> Kills aquatic life, spreads diseases, damages ecosystems.<br><br>
+      <b>Real-Life Math Applications:</b>
+      <div class="real-math">
+        <ul>
+          <li>Predicting pollution spread: Fluid dynamics equations model how chemicals travel in water.</li>
+          <li>Wastewater treatment optimization: Plants calculate exact chemical dosages for efficient cleaning.</li>
+          <li>Monitoring sensors: Data is analyzed with statistics to detect contamination spikes early.</li>
+        </ul>
+      </div>
+    `
+  },
+  land: {
+    title: "Land Pollution",
+    content: `
+      <b>What it is:</b> Waste, chemicals, and pesticides contaminating soil.<br><br>
+      <b>Effects:</b> Reduces soil fertility, harms plants and animals.<br><br>
+      <b>Real-Life Math Applications:</b>
+      <div class="real-math">
+        <ul>
+          <li>Waste collection optimization: Linear programming routes garbage trucks efficiently, reducing fuel use.</li>
+          <li>Composting and soil analysis: Math models calculate how much compost improves soil and reduces chemical fertilizers.</li>
+          <li>Illegal dumping detection: Drones and AI analyze images to detect trash hotspots.</li>
+        </ul>
+      </div>
+    `
+  },
+  plastic: {
+    title: "Plastic Pollution",
+    content: `
+      <b>What it is:</b> Accumulation of plastic waste in land and water.<br><br>
+      <b>Effects:</b> Harms marine life, soil contamination, microplastics in food chain.<br><br>
+      <b>Real-Life Math Applications:</b>
+      <div class="real-math">
+        <ul>
+          <li>Tracking plastic waste: GPS, satellite, and statistical models predict plastic accumulation in oceans.</li>
+          <li>Recycling optimization: Math sorts plastics efficiently by type and density.</li>
+          <li>Life-cycle analysis: Companies calculate environmental impact of plastic packaging to design better alternatives.</li>
+        </ul>
+      </div>
+    `
+  },
+  climate: {
+    title: "Climate Change",
+    content: `
+      <b>What it is:</b> Long-term changes in weather patterns caused by human activities.<br><br>
+      <b>Effects:</b> Rising sea levels, extreme weather, heatwaves.<br><br>
+      <b>Real-Life Math Applications:</b>
+      <div class="real-math">
+        <ul>
+          <li>Renewable energy planning: Math models optimize placement of wind turbines and solar farms.</li>
+          <li>Carbon budgeting: Governments calculate emissions targets per sector to meet climate goals.</li>
+          <li>Climate modeling: Differential equations and statistics predict future climate scenarios.</li>
+          <li>Smart meters & analytics: AI uses energy consumption data to recommend energy-saving actions for households.</li>
+        </ul>
+      </div>
+    `
+  }
+};
+
+function showInfo(type) {
+  const infoBox = document.getElementById("info");
+  infoBox.innerHTML = `<h2>${infoData[type].title}</h2><p>${infoData[type].content}</p>`;
+  infoBox.classList.add("active");
+}
+</script>
+
+</body>
+</html>
